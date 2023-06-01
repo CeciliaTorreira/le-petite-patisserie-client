@@ -8,10 +8,11 @@ import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login';
 import NotFound from './pages/errors/NotFound';
 import Error from './pages/errors/Error';
-import IsPrivate from "./components/auth/IsPrivate.jsx"
+
 // COMPONENTES
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile';
+
 
 
 

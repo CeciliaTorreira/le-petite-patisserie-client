@@ -12,6 +12,7 @@ import Error from './pages/errors/Error';
 // COMPONENTES
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile';
+import IsPrivate from './components/auth/IsPrivate';
 
 
 
@@ -27,7 +28,7 @@ function App() {
      <Route path="/" element={ <Home />} />
      <Route path='/auth/signup' element={ <Signup/> } />
      <Route path="/auth/login" element={ <Login /> } /> 
-     <Route path='/profile' element={<Profile/>}/>
+     <Route path='/profile' element={<IsPrivate><Profile/></IsPrivate>}/>
    
    
      {/* ERRORS */}

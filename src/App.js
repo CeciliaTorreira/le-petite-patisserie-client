@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
      
-     <IsPrivate></IsPrivate>
+    
 
      <Routes>
      <Route path="/" element={ <Home />} />

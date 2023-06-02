@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { verifyService } from "../services/auth.services";
 import { ProgressBar } from  'react-loader-spinner'
-import Navbar from "../components/Navbar";
+// import { Link, useNavigate } from "react-router-dom";
+// import Navbar from "../components/Navbar";
 const AuthContext = createContext();
 
 function AuthWrapper(props) {
@@ -14,14 +15,14 @@ function AuthWrapper(props) {
   authenticateUser()
 
 }, [])
-
+ 
   // Validamos el token y recibimos el payload
   const authenticateUser = async () => {
     try {
       const response = await verifyService(); //! Función que contacta al backend
       console.log(response);
       setIsLoggedIn(true);
-      setActiveUser(response.data.payload)
+      setActiveUser(response.data.payload) //! 
       setIsLoading(false) 
     } catch (error) {
       console.log(error);
@@ -38,9 +39,9 @@ function AuthWrapper(props) {
   }
   
   if (isLoading){
-return <div className="App">
-<Navbar />
-   <div><ProgressBar
+return (<div className="App">
+{/* <Navbar/> */}
+   <ProgressBar
   height="80"
   width="80"
   ariaLabel="progress-bar-loading"
@@ -49,8 +50,9 @@ return <div className="App">
   borderColor = '#51E5FF'
   barColor = 'lightBlue'
   className = "loading-bar"
-  /></div>
-</div>
+  />
+   
+</div>)
 }
 
   //3. Renderizacion o contexto.
@@ -62,3 +64,4 @@ return <div className="App">
 }
 
 export { AuthContext, AuthWrapper };
+

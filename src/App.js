@@ -8,10 +8,11 @@ import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login';
 import NotFound from './pages/errors/NotFound';
 import Error from './pages/errors/Error';
+import Profile from './pages/Profile';
+
 
 // COMPONENTES
 import Navbar from './components/Navbar';
-import Profile from './pages/Profile';
 import IsPrivate from './components/auth/IsPrivate';
 
 
@@ -22,7 +23,7 @@ function App() {
   return (
     <div className="App">
      
-    
+     <Navbar />
 
      <Routes>
      <Route path="/" element={ <Home />} />
@@ -38,7 +39,7 @@ function App() {
 
      </Routes>
 
-     <Navbar />
+    
 
     </div>
   );

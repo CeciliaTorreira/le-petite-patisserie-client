@@ -3,16 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
+
   const { isLoggedIn, authenticateUser } = useContext(AuthContext);
   const navigate = useNavigate()
+
+
   const handleLogout = () =>{
     //! Borraremos el token
     localStorage.removeItem("authToken")
 
     //! Validamos que el token ha sido borrado
     authenticateUser()
+  
     navigate("/")
-}
+  
+  }
   return (
     <nav className="navbar">
       <Link to="/">Home</Link>
@@ -25,3 +30,4 @@ function Navbar() {
 }
 //! Actualizar botones
 export default Navbar;
+

@@ -17,7 +17,7 @@ import IsPrivate from './components/auth/IsPrivate';
 import RecipesList from './pages/recipes/RecipesList';
 import NewRecipe from './pages/recipes/NewRecipe';
 import RecipeDetails from './pages/recipes/RecipeDetails';
-
+import EditRecipe from './pages/recipes/EditRecipe';
 
 
 
@@ -37,6 +37,7 @@ function App() {
      <Route path='/recipes' element={<RecipesList/>}/> 
      <Route path='/recipes/add' element={<NewRecipe/>}/>
      <Route path='/recipes/:recipeId' element={<RecipeDetails/>}/>
+     <Route path='/recipes/:recipeId/edit' element={<EditRecipe/>} />
      {/* ERRORS */}
      <Route path="*" element={ <NotFound/>  }/>
      <Route path="/error" element={<Error/> } />

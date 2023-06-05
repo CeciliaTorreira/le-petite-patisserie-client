@@ -37,9 +37,11 @@ function RecipesList() {
       <section className="user-recipes">
         {allRecipes.map((eachRecipe) => {
           return (
+          <div key={eachRecipe._id}>
             <Link to={`/recipes/${eachRecipe._id}`}>
-            <RecipeCard key={eachRecipe._id} eachRecipe={eachRecipe}/>
+            <RecipeCard eachRecipe={eachRecipe}/>
             </Link>
+            </div>
           );
         })}
       </section>

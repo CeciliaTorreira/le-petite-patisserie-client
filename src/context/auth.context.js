@@ -10,10 +10,10 @@ function AuthWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeUser, setActiveUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
-
+  
   useEffect(()=>{
   authenticateUser()
-
+ 
 }, [])
  
   // Validamos el token y recibimos el payload

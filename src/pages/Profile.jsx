@@ -5,6 +5,10 @@ import {
   getFavouriteRecipesService,
   getCreatedRecipesService,
 } from "../services/profile.services";
+import { Link } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard";
+
+
 
 function Profile() {
   const { activeUser, authenticateUser } = useContext(AuthContext);
@@ -26,7 +30,7 @@ function Profile() {
       console.log(error);
     }
   };
- // MOSTRAR RECETAS FAVORITAS DEL USUARIO ACTIVO
+  // MOSTRAR RECETAS FAVORITAS DEL USUARIO ACTIVO
   const userFavouriteRecipes = async () => {
     try {
       const foundRecipes = await getFavouriteRecipesService();
@@ -36,13 +40,13 @@ function Profile() {
       console.log(error);
     }
   };
-   
+
   // MOSTRAR RECETAS CREADAS POR USUARIO ACTIVO
   const userCreatedRecipes = async () => {
     try {
       const createdRecipes = await getCreatedRecipesService();
-      setCreatedRecipes(createdRecipes.data)
-      console.log(createdRecipes.data.name)
+      setCreatedRecipes(createdRecipes.data);
+      console.log(createdRecipes.data.name);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +59,7 @@ function Profile() {
   //  } catch (error) {
   //   console.log(error);
   //  }
-  
+
   // }
 
   return (
@@ -65,29 +69,24 @@ function Profile() {
         <p>Testeando renderizaciones de admin/user</p>
       )}
 
-      <button className="buttons" onClick={userFavouriteRecipes}>Favourite Recipes</button>
-        <button className="buttons" onClick={userCreatedRecipes}>Created Recipes</button>
+      <button className="buttons" onClick={userFavouriteRecipes}>
+        Favourite Recipes
+      </button>
+      <button className="buttons" onClick={userCreatedRecipes}>
+        Created Recipes
+      </button>
       <hr />
       <div className="profile-recipes">
-        
-
-
         <section className="user-recipes">
-        
           {/* <h4>Favourite recipes</h4> */}
 
           {favouriteRecipes.map((eachRecipe) => {
             return (
               <div key={eachRecipe._id}>
-                <h4>{eachRecipe.name}</h4>
-                <p>
-                  <img
-                    width={170}
-                    height={180}
-                    src={eachRecipe.picture}
-                    alt={eachRecipe.name}
-                  />
-                </p>
+                <Link to={`/recipes/${eachRecipe._id}`}>
+                  <RecipeCard eachRecipe={eachRecipe} />
+                </Link>
+
                 {/* <button className="buttons" onClick={() => handleRemoveFavourite(eachRecipe._id)}>Remove</button> */}
               </div>
             );
@@ -99,15 +98,9 @@ function Profile() {
           {createdRecipes.map((eachRecipe) => {
             return (
               <div key={eachRecipe._id}>
-                <h4>{eachRecipe.name}</h4>
-                <p>
-                  <img
-                    width={170}
-                    height={180}
-                    src={eachRecipe.picture}
-                    alt={eachRecipe.name}
-                  />
-                </p>
+                <Link to={`/recipes/${eachRecipe._id}`}>
+                  <RecipeCard eachRecipe={eachRecipe} />
+                </Link>
               </div>
             );
           })}

@@ -3,7 +3,7 @@
 }
 
 a {
-margin: 10px;
+  margin: 10px;
 }
 
 .navbar {
@@ -15,5 +15,26 @@ margin: 10px;
   background-color: lightblue;
 }
 
+a {
+  text-decoration: none;
+}
+.user-recipes {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
 
+.ingredients-input {
+  width: 80%;
+  height: 200px;
+  vertical-align: top;
+}
+.instructions-input {
+  width: 80%;
+  height: 200px;
+  vertical-align: top;
+
+}
+.form {
+}
 /* MEDIA QUERIES SI ES POSIBLE (RECOMENDADO) */

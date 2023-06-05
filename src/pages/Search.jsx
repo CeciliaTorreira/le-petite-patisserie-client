@@ -1,7 +1,11 @@
 
 function Search() {
   return (
-    <div>Search</div>
+    <div>
+     <h3>Find a recipe</h3>
+    
+    
+    </div>
   )
 }
 

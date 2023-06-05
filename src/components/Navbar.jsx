@@ -20,6 +20,7 @@ function Navbar() {
   }
   return (
     <nav className="navbar">
+    <Link to="/search">Search</Link>
       <Link to="/">Home</Link>
       {isLoggedIn && <Link to="/profile">Profile</Link>}
       {isLoggedIn &&  <Link to="/" onClick={handleLogout}>Logout</Link>}

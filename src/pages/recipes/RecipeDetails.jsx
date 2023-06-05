@@ -10,6 +10,8 @@ function RecipeDetails() {
  const [recipe, setRecipe] = useState(null)
  const params = useParams()
  const [isLoading, setIsLoading] = useState(true)
+
+ 
  useEffect(()=>{
   getData()
   // eslint-disable-next-line
@@ -80,7 +82,9 @@ function RecipeDetails() {
     {activeUser.id === recipe.creator.id && (<Link to={`/recipes/${recipe._id}/edit` }><button>Edit recipe</button></Link>)}
     {activeUser.role === "admin" && (<button onClick={handleDelete}>Delete recipe</button>)} 
     </section>
-     {/* IMPLEMENTAR ESTAS FUNCIONES DESPUÉS  */}
+    <hr />
+    
+    <Link to={`/recipes/${recipe._id}/comments`}><button><h5>Comments and reviews</h5></button></Link>
     </div>
 
 

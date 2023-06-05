@@ -27,12 +27,17 @@ a {
 .ingredients-input {
   width: 80%;
   height: 200px;
-  vertical-align: top;
+
 }
 .instructions-input {
   width: 80%;
   height: 200px;
-  vertical-align: top;
+ 
+}
+
+.comment-input{
+width: 80%;
+height: 130px;
 
 }
 /* .form {

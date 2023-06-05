@@ -3,13 +3,12 @@ import { getRecipeCommentsService } from "../../services/recipe.services";
 import { Link, useParams } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { AuthContext } from "../../context/auth.context.js";
-
+import CommentCard from "../../components/CommentCard";
 function CommentList() {
   const [comments, setComments] = useState([]);
   const params = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const {activeUser} = useContext(AuthContext)
-
+  const { activeUser } = useContext(AuthContext);
 
   useEffect(() => {
     getData();
@@ -47,16 +46,20 @@ function CommentList() {
   return (
     <div>
       <h3>Comments and ratings</h3>
-{activeUser && <Link to={`/recipes/${params.recipeId}/comments/add`}><button className="buttons">Rate and comment this recipe</button></Link>} 
+      {activeUser && (
+        <Link to={`/recipes/${params.recipeId}/comments/add`}>
+          <button className="buttons">Rate and comment this recipe</button>
+        </Link>
+      )}
       <hr />
       <section className="comments-list">
         {comments.map((eachComment) => {
           return (
-            <div key={eachComment.id}>
-              <p>Written by: {eachComment.creator.username}</p>
-              <li>Rating: {eachComment.rating}</li>
-              <p>{eachComment.description}</p>
-              <hr />
+            <div key={eachComment._id} className="user-recipes">
+              <CommentCard 
+                eachComment={eachComment}
+                recipeId={params.recipeId}
+              />
             </div>
           );
         })}

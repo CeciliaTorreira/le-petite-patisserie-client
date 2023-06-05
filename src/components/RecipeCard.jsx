@@ -2,7 +2,7 @@
 
 function RecipeCard({eachRecipe}) {
   return (
-    <div>
+    <div className="recipe-card">
     <h3>{eachRecipe.name}</h3>
     <p>
       <img

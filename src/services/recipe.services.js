@@ -39,8 +39,12 @@ const createCommentService = (recipeId, newComment) => {
   return service.post(`/recipes/${recipeId}/comments`, newComment);
 };
 
-const deleteCommentService = (commentId) => {
-  return service.delete(`/recipes/comments/${commentId}`);
+const getCommentByIdService = (recipeId, commentId) =>{
+return service.get(`/recipes/${recipeId}/comments/${commentId}`)
+}
+
+const deleteCommentService = (recipeId, commentId) => {
+  return service.delete(`/recipes/${recipeId}/comments/${commentId}`);
 };
 export {
   getAllRecipesService,
@@ -53,4 +57,5 @@ export {
   getRecipeCommentsService,
   createCommentService,
   deleteCommentService,
+  getCommentByIdService,
 };

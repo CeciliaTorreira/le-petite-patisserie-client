@@ -17,6 +17,7 @@ a {
 
 a {
   text-decoration: none;
+
 }
 .user-recipes {
   display: flex;
@@ -38,8 +39,9 @@ a {
 .comment-input{
 width: 80%;
 height: 130px;
-
 }
+
+
 /* .form {
 } */
 

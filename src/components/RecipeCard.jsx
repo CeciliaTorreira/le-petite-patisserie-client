@@ -1,10 +1,18 @@
 
 
-function RecipeCard() {
+function RecipeCard({eachRecipe}) {
   return (
-    <div>RecipeCard
-    
-    <h1>Test</h1></div>
+    <div>
+    <h3>{eachRecipe.name}</h3>
+    <p>
+      <img
+        width={170}
+        height={180}
+        src={eachRecipe.picture}
+        alt={eachRecipe.name}
+      />
+    </p>
+  </div>
   )
 }
 

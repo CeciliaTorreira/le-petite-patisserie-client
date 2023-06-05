@@ -2,7 +2,15 @@ import { useState } from "react";
 import { createRecipeService } from "../../services/recipe.services";
 import { useNavigate } from "react-router-dom";
 
+
 function NewRecipe(props) {
+
+  
+
+  //ERROR
+  const [errorMessage, setErrorMessage] =useState("")
+
+  // FORM
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [category, setCategory] = useState([]);
@@ -37,7 +45,12 @@ function NewRecipe(props) {
       
       navigate("/profile");
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 400){
+       setErrorMessage(error.response.data.errorMessage)
+      }
+      else{
+      navigate("/error")
+    }
     }
   };
 
@@ -104,6 +117,7 @@ function NewRecipe(props) {
         <button className="buttons" type="submit">
           Add your recipe
         </button>
+        {errorMessage && <p style={{fontWeight: "bold", color: "darkblue"}}>{errorMessage}</p>}
       </form>
     </div>
   );

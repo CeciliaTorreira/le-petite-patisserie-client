@@ -16,6 +16,7 @@ import Navbar from './components/Navbar';
 import IsPrivate from './components/auth/IsPrivate';
 import RecipesList from './pages/recipes/RecipesList';
 import NewRecipe from './pages/recipes/NewRecipe';
+import RecipeDetails from './pages/recipes/RecipeDetails';
 
 
 
@@ -35,6 +36,7 @@ function App() {
      <Route path='/search' element={<Search />} />
      <Route path='/recipes' element={<RecipesList/>}/> 
      <Route path='/recipes/add' element={<NewRecipe/>}/>
+     <Route path='/recipes/:recipeId' element={<RecipeDetails/>}/>
      {/* ERRORS */}
      <Route path="*" element={ <NotFound/>  }/>
      <Route path="/error" element={<Error/> } />

@@ -10,14 +10,17 @@ import NotFound from './pages/errors/NotFound';
 import Error from './pages/errors/Error';
 import Profile from './pages/Profile';
 import Search from './pages/Search'
-
-// COMPONENTES
-import Navbar from './components/Navbar';
-import IsPrivate from './components/auth/IsPrivate';
 import RecipesList from './pages/recipes/RecipesList';
 import NewRecipe from './pages/recipes/NewRecipe';
 import RecipeDetails from './pages/recipes/RecipeDetails';
 import EditRecipe from './pages/recipes/EditRecipe';
+import CommentList from './pages/comments/CommentList'
+import CommentDetails from './pages/comments/CommentDetails'
+
+// COMPONENTES
+import Navbar from './components/Navbar';
+import IsPrivate from './components/auth/IsPrivate';
+import NewComment from './pages/comments/NewComment';
 
 
 
@@ -30,18 +33,23 @@ function App() {
 
      <Routes>
      <Route path="/" element={ <Home />} />
+     <Route path='/search' element={<Search />} />
+     {/* AUTH */}
      <Route path='/auth/signup' element={ <Signup/> } />
      <Route path="/auth/login" element={ <Login /> } /> 
      <Route path='/profile' element={<IsPrivate><Profile/></IsPrivate>}/>
-     <Route path='/search' element={<Search />} />
+     {/* RECETAS */}
      <Route path='/recipes' element={<RecipesList/>}/> 
      <Route path='/recipes/add' element={<NewRecipe/>}/>
      <Route path='/recipes/:recipeId' element={<RecipeDetails/>}/>
      <Route path='/recipes/:recipeId/edit' element={<EditRecipe/>} />
+     {/* COMENTARIOS */}
+     <Route path='/recipes/:recipeId/comments' element={<CommentList/>}/>
+     <Route path='/recipes/:recipeId/comments/:commentId' element={<CommentDetails/>}/>
+     <Route path='/recipes/:recipeId/comments/add' element={<NewComment/>}/>
      {/* ERRORS */}
      <Route path="*" element={ <NotFound/>  }/>
      <Route path="/error" element={<Error/> } />
-
 
      </Routes>
 

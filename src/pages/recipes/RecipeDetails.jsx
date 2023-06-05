@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react"
-import { getRecipeByIdService } from "../../services/recipe.services"
-import { Link, useParams } from "react-router-dom"
+import { deleteRecipeService, getRecipeByIdService } from "../../services/recipe.services"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { ProgressBar } from  'react-loader-spinner'
 import { AuthContext } from "../../context/auth.context.js";
 
 function RecipeDetails() {
+  const navigate = useNavigate()
   const {activeUser} = useContext(AuthContext)
  const [recipe, setRecipe] = useState(null)
  const params = useParams()
@@ -26,6 +27,22 @@ function RecipeDetails() {
     setIsLoading(false)
   }
 }
+
+  const handleDelete = async() =>{
+   try {
+      
+    await deleteRecipeService(params.recipeId)
+    navigate("/recipes")
+
+
+   } catch (error) {
+    navigate("/error")
+   }
+  
+  }
+
+
+
   if (isLoading){
     return <div>
          <ProgressBar
@@ -61,7 +78,7 @@ function RecipeDetails() {
     <br />
     <section className="details-buttons">
     {activeUser.id === recipe.creator.id && (<Link to={`/recipes/${recipe._id}/edit` }><button>Edit recipe</button></Link>)}
-    {activeUser.role === "admin" && (<button>Delete recipe</button>)} 
+    {activeUser.role === "admin" && (<button onClick={handleDelete}>Delete recipe</button>)} 
     </section>
      {/* IMPLEMENTAR ESTAS FUNCIONES DESPUÉS  */}
     </div>

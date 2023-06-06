@@ -1,80 +1,107 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRecipeByIdService } from "../../services/recipe.services";
-import {updateRecipeService} from "../../services/recipe.services";
+import { updateRecipeService } from "../../services/recipe.services";
+import { uploadImageService } from "../../services/upload.services.js";
 
 function EditRecipe() {
- const params = useParams()
- const navigate = useNavigate()
+  const params = useParams();
+  const navigate = useNavigate();
 
- //ERROR
- const [errorMessage, setErrorMessage] = useState("")
+  //ERROR
+  const [errorMessage, setErrorMessage] = useState("");
 
- // FORM
- const [name, setName] = useState("");
- const [ingredients, setIngredients] = useState("");
- const [category, setCategory] = useState([]);
- const [instructions, setInstructions] = useState("");
- const [servings, setServings] = useState(0);
- const [picture, setPicture] = useState("");
+  // FORM
+  const [name, setName] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [category, setCategory] = useState([]);
+  const [instructions, setInstructions] = useState("");
+  const [servings, setServings] = useState(0);
 
+  //PICTURE
+  const [picture, setPicture] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
- useEffect(()=>{
-  getData()
-  // eslint-disable-next-line 
- }, [])
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line
+  }, []);
 
-const getData = async ()=>{
-try {
-  const oneRecipe = await getRecipeByIdService(params.recipeId)
-console.log(oneRecipe.data);
-   setName(oneRecipe.data.name)
-   setIngredients(oneRecipe.data.ingredients)
-   setCategory(oneRecipe.data.category)
-   setInstructions(oneRecipe.data.instructions)
-   setServings(oneRecipe.data.servings)
-   setPicture(oneRecipe.data.picture)
+  const getData = async () => {
+    try {
+      const oneRecipe = await getRecipeByIdService(params.recipeId);
+      console.log(oneRecipe.data);
+      setName(oneRecipe.data.name);
+      setIngredients(oneRecipe.data.ingredients);
+      setCategory(oneRecipe.data.category);
+      setInstructions(oneRecipe.data.instructions);
+      setServings(oneRecipe.data.servings);
+      setPicture(oneRecipe.data.picture);
+    } catch (error) {
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
+    }
+  };
 
-} catch (error) {
-  if (error.response.status === 400){
-    setErrorMessage(error.response.data.errorMessage)
-   }
-   else{
-   navigate("/error")
- }
-}} 
+  const handleFileUpload = async (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
 
-const handleNameChange = (e) => setName(e.target.value);
-const handleIngredientsChange = (e) => setIngredients(e.target.value);
-const handleCategoryChange = (e) => setCategory(e.target.value);
-const handleInstructionsChange = (e) => setInstructions(e.target.value);
-const handleServingsChange = (e) => setServings(e.target.value);
-const handlePictureChange = (e) => setPicture(e.target.value);
+    if (!e.target.files[0]) {
+      // to prevent accidentally clicking the choose file button and not selecting a file
+      return;
+    }
+    setIsUploading(true);
 
-const handleSubmit = async (e)=>{
+    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    uploadData.append("picture", e.target.files[0]);
+    //                   |
+    //     this name needs to match the name used in the middleware => uploader.single("image")
 
+    try {
+      const response = await uploadImageService(uploadData);
+      // or below line if not using services
+      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
 
-e.preventDefault()
- 
-const updatedRecipe = {
-name,
-ingredients,
-category,
-instructions,
-servings,
-picture
-}
-  
+      setPicture(response.data.picture);
+      //                          |
+      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
 
-await updateRecipeService(params.recipeId, updatedRecipe)
-  navigate(`/recipes/${params.recipeId}`)
+      setIsUploading(false); // to stop the loading animation
+    } catch (error) {
+      navigate("/error");
+    }
+  };
 
-}
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleIngredientsChange = (e) => setIngredients(e.target.value);
+  const handleCategoryChange = (e) => setCategory(e.target.value);
+  const handleInstructionsChange = (e) => setInstructions(e.target.value);
+  const handleServingsChange = (e) => setServings(e.target.value);
+  // const handlePictureChange = (e) => setPicture(e.target.value);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const updatedRecipe = {
+      name,
+      ingredients,
+      category,
+      instructions,
+      servings,
+      picture,
+    };
+
+    await updateRecipeService(params.recipeId, updatedRecipe);
+    navigate(`/recipes/${params.recipeId}`);
+  };
 
   return (
     <div className="form">
-          <h2>Add your own recipe</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Add your own recipe</h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="name">Recipe title:</label>
         <input
           type="text"
@@ -85,17 +112,19 @@ await updateRecipeService(params.recipeId, updatedRecipe)
         <br />
         <label htmlFor="ingredients">List your ingredients:</label>
         <br />
-        <textarea className="ingredients-input"
+        <textarea
+          className="ingredients-input"
           type="text"
           name="ingredients"
           onChange={handleIngredientsChange}
           value={ingredients}
         />
         <br />
-        
-        <label htmlFor="instructions" >Instructions:</label>
+
+        <label htmlFor="instructions">Instructions:</label>
         <br />
-        <textarea className="instructions-input"
+        <textarea
+          className="instructions-input"
           type="text"
           name="instructions"
           onChange={handleInstructionsChange}
@@ -125,21 +154,23 @@ await updateRecipeService(params.recipeId, updatedRecipe)
         <br />
         <label htmlFor="picture">Picture</label>
         <input
-          type="text"
+          type="file"
           name="picture"
-          onChange={handlePictureChange}
-          value={picture}
+          onChange={handleFileUpload}
+          disabled={isUploading}
         />
-<br />
+        <br />
         <button className="buttons" type="submit">
           Update your recipe
         </button>
-        {errorMessage && <p style={{fontWeight: "bold", color: "darkblue"}}>{errorMessage}</p>}
+        {errorMessage && (
+          <p style={{ fontWeight: "bold", color: "darkblue" }}>
+            {errorMessage}
+          </p>
+        )}
       </form>
     </div>
   );
 }
 
-    
-
-export default EditRecipe
+export default EditRecipe;

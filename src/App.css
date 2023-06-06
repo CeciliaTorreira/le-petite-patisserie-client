@@ -19,12 +19,22 @@ a {
   text-decoration: none;
 
 }
+
+.RecipeCard {
+width: 100px;
+
+}
 .user-recipes {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 .profile-recipes{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.search-results {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;

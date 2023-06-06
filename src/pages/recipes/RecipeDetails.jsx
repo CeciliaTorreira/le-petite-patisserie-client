@@ -11,11 +11,14 @@ import { AuthContext } from "../../context/auth.context.js";
 
 function RecipeDetails() {
   const navigate = useNavigate();
-  const { activeUser } = useContext(AuthContext);
-  const [recipe, setRecipe] = useState(null);
   const params = useParams();
-  const [isLoading, setIsLoading] = useState(true);
+
   const { isLoggedIn } = useContext(AuthContext);
+  const { activeUser } = useContext(AuthContext);
+
+  const [recipe, setRecipe] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFavourite, setIsFavourite] = useState(false) // Estados para mostrar un botón u otro dependiendo de si la receta está ya en favoritos o no
 
   useEffect(() => {
     getData();

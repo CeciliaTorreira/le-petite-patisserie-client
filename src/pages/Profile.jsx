@@ -79,7 +79,7 @@ function Profile() {
     );
   }
   return (
-    <div>
+    <div className="home">
     <section className="user-profile">
       <h1>{activeUser.username}'s profile</h1>
       {activeUser.role === "admin" && (

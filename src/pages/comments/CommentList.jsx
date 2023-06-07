@@ -30,7 +30,7 @@ function CommentList() {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="spinner">
         <ProgressBar
           height="80"
           width="80"
@@ -45,18 +45,20 @@ function CommentList() {
     );
   }
   return (
-    <div>
+    <div className="comments">
+     <section className="comments-header"> 
       <h3>Comments and ratings</h3>
       {activeUser && (
         <Link to={`/recipes/${params.recipeId}/comments/add`}>
           <button className="buttons">Rate and comment this recipe</button>
         </Link>
       )}
+      </section> 
       <hr />
       <section className="comments-list">
         {comments.map((eachComment) => {
           return (
-            <div key={eachComment._id} className="user-recipes">
+            <div key={eachComment._id}>
               <CommentCard 
                 eachComment={eachComment}
                 recipeId={params.recipeId}

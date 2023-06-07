@@ -26,7 +26,7 @@ function NewComment() {
       };
       await createCommentService(params.recipeId, newComment);
 
-      navigate("/profile");
+      navigate(`/recipes/${params.recipeId}`);
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -37,10 +37,11 @@ function NewComment() {
   };
 
   return (
-    <div>
+    <div className="new-comment">
+     <section className="comment-form">
       <h3>Share your opinion</h3>
       <form onSubmit={handleSubmit}>
-        <br />
+        
         <label htmlFor="description"></label>
         <br />
         <textarea
@@ -60,6 +61,7 @@ function NewComment() {
           value={rating}
         />
         <br />
+        <br />
         <button className="buttons" type="submit">
           Post
         </button>
@@ -69,6 +71,8 @@ function NewComment() {
           </p>
         )}
       </form>
+      <br />
+      </section>
     </div>
   );
 }

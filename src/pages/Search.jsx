@@ -54,7 +54,7 @@ function Search() {
     );
   }
   return (
-    <div >
+    <div className="search">
       <section className="search-bar">
         <h3>Find a recipe</h3>
 
@@ -67,7 +67,7 @@ function Search() {
         <br />
       </section>
 
-      <hr />
+      <hr className="search-hr"/>
       {/* Tenemos en la consola los elementos que obtenemos tras realizar una búsqueda  */}
       <section className="search-results">
         {foundRecipes.map((eachRecipe) => {

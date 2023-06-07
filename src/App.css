@@ -20,10 +20,6 @@ a {
 
 }
 
-.RecipeCard {
-width: 100px;
-
-}
 .user-recipes {
   display: flex;
   justify-content: space-evenly;
@@ -49,13 +45,43 @@ width: 100px;
   height: 200px;
  
 }
-
 .comment-input{
 width: 80%;
 height: 130px;
 }
 
+.recipe-card {
+  width: 170px;
+  border: 2px outset lightskyblue;
+  border-radius: 15% 0 20% 0; 
+  box-shadow: 6px 5px 15px 2px lightblue;
+  background-color: rgb(199, 229, 240)
+  /* display: flex;
+  justify-content: flex-start;
+  flex-direction: column; */
+}
+.img-card {
+  border-radius: 20% 20% 20% 20%; 
+  width: 165px;
+  margin-top: 5px;
+}
 
+.recipe-list{
+margin-bottom: 60px;
+}
+.recipe-details{
+margin-top: 20px;
+margin-bottom: 60px;
+margin-left: 10px;
+margin-right: 10px;
+}
+.recipe-details img {
+border-radius: 20% 20% 20% 20%; 
+width: 210px;
+height: 210px;
+}
+/* .recipe-details{
+} */
 /* .form {
 } */
 

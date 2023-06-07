@@ -1,17 +1,21 @@
 
 
 function RecipeCard({eachRecipe}) {
+   
   return (
+
+    
     <div className="recipe-card">
-    <h3>{eachRecipe.name}</h3>
-    <p>
-      <img
+    <img className="img-card"
         width={170}
         height={180}
         src={eachRecipe.picture}
         alt={eachRecipe.name}
       />
-    </p>
+    <p style={{fontWeight: "bold"}}>{eachRecipe.name}</p>
+    {/* <p>
+      {eachRecipe.category}
+    </p> */}
   </div>
   )
 }

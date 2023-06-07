@@ -27,7 +27,7 @@ function RecipesList() {
   };
 
   return (
-    <div>
+    <div className="recipe-list">
       <h2>Check out our recipes!</h2>
         
        {isLoggedIn && <Link to={'/recipes/add'}><button>Fancy uploading your own recipes?</button></Link>}

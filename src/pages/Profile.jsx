@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 
 function Profile() {
-  const { activeUser, authenticateUser } = useContext(AuthContext);
+  const { activeUser } = useContext(AuthContext);
 
   const [favouriteRecipes, setFavouriteRecipes] = useState([]);
   const [createdRecipes, setCreatedRecipes] = useState([]);
@@ -27,7 +27,6 @@ function Profile() {
   const getData = async () => {
     try {
       const userData = await loadProfileService();
-      authenticateUser();
       console.log(userData);
     } catch (error) {
       console.log(error);

@@ -5,15 +5,18 @@ import {
   getFavouriteRecipesService,
   getCreatedRecipesService,
 } from "../services/profile.services";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
+import { ProgressBar } from "react-loader-spinner";
+
 
 function Profile() {
   const { activeUser } = useContext(AuthContext);
 
   const [favouriteRecipes, setFavouriteRecipes] = useState([]);
   const [createdRecipes, setCreatedRecipes] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate()
   //Mostrar una lista u otra
 
   const [showFavouriteRecipes, setShowFavouriteRecipes] = useState(false);
@@ -26,10 +29,10 @@ function Profile() {
   //CONSEGUIR INFORMACIÓN DE USUARIO
   const getData = async () => {
     try {
-      const userData = await loadProfileService();
-      console.log(userData);
+      await loadProfileService();
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   // MOSTRAR RECETAS FAVORITAS DEL USUARIO ACTIVO
@@ -40,6 +43,7 @@ function Profile() {
       // console.log(foundRecipes.data.name); // Muestra array vacío
       setShowFavouriteRecipes(true);
       setShowCreatedRecipes(false);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -53,11 +57,27 @@ function Profile() {
       // console.log(createdRecipes.data.name);
       setShowFavouriteRecipes(false);
       setShowCreatedRecipes(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-
+  if (isLoading) {
+    return (
+      <div>
+        <ProgressBar
+          height="80"
+          width="80"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass="progress-bar-wrapper"
+          borderColor="#51E5FF"
+          barColor="lightBlue"
+          className="loading-bar"
+        />
+      </div>
+    );
+  }
   return (
     <div>
     <section className="user-profile">

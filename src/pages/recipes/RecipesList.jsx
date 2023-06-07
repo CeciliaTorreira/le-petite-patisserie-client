@@ -1,31 +1,48 @@
 import { useContext, useEffect, useState } from "react";
 import { getAllRecipesService } from "../../services/recipe.services.js"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context.js";
 import RecipeCard from "../../components/RecipeCard.jsx";
+import { ProgressBar } from "react-loader-spinner";
 
 
 function RecipesList() {
 
-
+ const navigate = useNavigate()
    const {isLoggedIn} =useContext(AuthContext)
-
+  const [isLoading, setIsLoading] = useState(true);
   const [allRecipes, setAllRecipes] = useState([]);
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, []);
 
   const getData = async () => {
     try {
       const recipes = await getAllRecipesService();
       setAllRecipes(recipes.data);
-      console.log(recipes.data);
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
-
+   if (isLoading) {
+    return (
+      <div>
+        <ProgressBar
+          height="80"
+          width="80"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass="progress-bar-wrapper"
+          borderColor="#51E5FF"
+          barColor="lightBlue"
+          className="loading-bar"
+        />
+      </div>
+    );
+  }
   return (
     <div className="recipe-list">
       <h2>Check out our recipes!</h2>

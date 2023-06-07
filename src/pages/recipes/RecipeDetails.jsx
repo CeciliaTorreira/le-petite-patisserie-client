@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { AuthContext } from "../../context/auth.context.js";
+import { loadProfileService } from "../../services/profile.services";
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function RecipeDetails() {
 
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isFavourite, setIsFavourite] = useState();
+  const [isFavourite, setIsFavourite] = useState(null);
 
   useEffect(() => {
     getData();
@@ -29,17 +30,22 @@ function RecipeDetails() {
   const getData = async () => {
     try {
       const oneRecipe = await getRecipeByIdService(params.recipeId);
-      console.log(oneRecipe.data);
+      // console.log(oneRecipe.data);
       setRecipe(oneRecipe.data);
-      setIsLoading(false);
+      const userData = await loadProfileService();
+
       // Comprobamos si el usuario tiene ya la receta agregada a favoritos
-      if (activeUser && activeUser.favouriteRecipes.includes(oneRecipe.data._id)) {
+      if (
+        activeUser &&
+        userData.data.favouriteRecipes.includes(oneRecipe.data._id)
+      ) {
         setIsFavourite(true);
       } else {
         setIsFavourite(false);
       }
+
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   };
@@ -54,7 +60,7 @@ function RecipeDetails() {
     }
   };
 
-   //AÑADIR RECETA A FAVORITOS
+  //AÑADIR RECETA A FAVORITOS
   const handleAddFavourite = async () => {
     try {
       await addToFavoritesService(params.recipeId);
@@ -69,7 +75,7 @@ function RecipeDetails() {
     }
   };
 
- // QUITAR RECETA DE FAVORITOS
+  // QUITAR RECETA DE FAVORITOS
   const handleRemoveFavourite = async () => {
     try {
       await removeFromFavouriteService(params.recipeId);
@@ -142,4 +148,4 @@ function RecipeDetails() {
     </div>
   );
 }
-export default RecipeDetails
+export default RecipeDetails;

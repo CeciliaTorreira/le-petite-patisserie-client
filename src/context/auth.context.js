@@ -20,7 +20,6 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     try {
       const response = await verifyService(); //! Función que contacta al backend
-      console.log(response);
       setIsLoggedIn(true);
       setActiveUser(response.data.payload) //! 
       setIsLoading(false) 

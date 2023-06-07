@@ -3,12 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getRecipeByIdService } from "../../services/recipe.services";
 import { updateRecipeService } from "../../services/recipe.services";
 import { uploadImageService } from "../../services/upload.services.js";
-import { ProgressBar } from "react-loader-spinner";
 
 function EditRecipe() {
   const params = useParams();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
+
   //ERROR
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,7 +36,6 @@ function EditRecipe() {
       setInstructions(oneRecipe.data.instructions);
       setServings(oneRecipe.data.servings);
       setPicture(oneRecipe.data.picture);
-      setIsLoading(false);
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -51,7 +49,6 @@ function EditRecipe() {
     if (!e.target.files[0]) {
       return;
     }
-    setIsLoading(true);
 
     const uploadData = new FormData();
     uploadData.append("picture", e.target.files[0]);
@@ -60,8 +57,6 @@ function EditRecipe() {
       const response = await uploadImageService(uploadData);
 
       setPicture(response.data.picture);
-
-      setIsLoading(false);
     } catch (error) {
       navigate("/error");
     }
@@ -90,33 +85,18 @@ function EditRecipe() {
     navigate(`/recipes/${params.recipeId}`);
   };
 
-  if (isLoading) {
-    return (
-      <div>
-        <ProgressBar
-          height="80"
-          width="80"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{}}
-          wrapperClass="progress-bar-wrapper"
-          borderColor="#51E5FF"
-          barColor="lightBlue"
-          className="loading-bar"
-        />
-      </div>
-    );
-  }
   return (
     <div className="form">
       <h2>Add your own recipe</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="name">Recipe title:</label>
+        <label htmlFor="name">Recipe title: </label>
         <input
           type="text"
           name="name"
           onChange={handleNameChange}
           value={name}
         />
+        <br />
         <br />
         <label htmlFor="ingredients">List your ingredients:</label>
         <br />
@@ -128,7 +108,7 @@ function EditRecipe() {
           value={ingredients}
         />
         <br />
-
+        <br />
         <label htmlFor="instructions">Instructions:</label>
         <br />
         <textarea
@@ -139,7 +119,7 @@ function EditRecipe() {
           value={instructions}
         />
         <br />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="category">Category: </label>
         <select
           name="category"
           onChange={handleCategoryChange}
@@ -152,7 +132,8 @@ function EditRecipe() {
           <option value="dairy free">Dairy free</option>
         </select>
         <br />
-        <label htmlFor="servings">Servings:</label>
+        <br />
+        <label htmlFor="servings">Servings: </label>
         <input
           type="number"
           name="servings"
@@ -160,8 +141,10 @@ function EditRecipe() {
           value={servings}
         />
         <br />
-        <label htmlFor="picture">Picture</label>
+        <br />
+        <label htmlFor="picture">Picture: </label>
         <input type="file" name="picture" onChange={handleFileUpload} />
+        <br />
         <br />
         <button className="buttons" type="submit">
           Update your recipe

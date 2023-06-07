@@ -63,7 +63,7 @@ function RecipeDetails() {
   const handleAddFavourite = async () => {
     try {
       await addToFavoritesService(params.recipeId);
-      await authenticateUser()
+      await getData()
       setIsFavourite(true);
       
           } catch (error) {
@@ -79,7 +79,7 @@ function RecipeDetails() {
   const handleRemoveFavourite = async () => {
     try {
       await removeFromFavouriteService(params.recipeId);
-      await authenticateUser()
+      await getData()
       setIsFavourite(false);
       
       

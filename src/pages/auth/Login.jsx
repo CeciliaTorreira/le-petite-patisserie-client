@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services";
-import { ProgressBar } from "react-loader-spinner";
+
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  
   // ERRORES
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,7 +32,7 @@ function Login() {
       //! Validamos el token para comprobar quién es el usuario y si está loggeado.
       await authenticateUser();
 
-      setIsLoading(false);
+      
       navigate("/profile");
     } catch (error) {
       if (error.response.status === 400) {
@@ -43,22 +43,7 @@ function Login() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div>
-        <ProgressBar
-          height="80"
-          width="80"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{}}
-          wrapperClass="progress-bar-wrapper"
-          borderColor="#51E5FF"
-          barColor="lightBlue"
-          className="loading-bar"
-        />
-      </div>
-    );
-  }
+  
   return (
     <div className="auth">
       <section className="auth-form">

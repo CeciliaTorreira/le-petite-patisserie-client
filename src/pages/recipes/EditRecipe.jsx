@@ -3,11 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getRecipeByIdService } from "../../services/recipe.services";
 import { updateRecipeService } from "../../services/recipe.services";
 import { uploadImageService } from "../../services/upload.services.js";
+import { ProgressBar } from "react-loader-spinner";
 
 function EditRecipe() {
   const params = useParams();
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(true);
   //ERROR
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -20,7 +21,6 @@ function EditRecipe() {
 
   //PICTURE
   const [picture, setPicture] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     getData();
@@ -37,6 +37,7 @@ function EditRecipe() {
       setInstructions(oneRecipe.data.instructions);
       setServings(oneRecipe.data.servings);
       setPicture(oneRecipe.data.picture);
+      setIsLoading(false);
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -47,29 +48,20 @@ function EditRecipe() {
   };
 
   const handleFileUpload = async (e) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     if (!e.target.files[0]) {
-      // to prevent accidentally clicking the choose file button and not selecting a file
       return;
     }
-    setIsUploading(true);
+    setIsLoading(true);
 
-    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    const uploadData = new FormData();
     uploadData.append("picture", e.target.files[0]);
-    //                   |
-    //     this name needs to match the name used in the middleware => uploader.single("image")
 
     try {
       const response = await uploadImageService(uploadData);
-      // or below line if not using services
-      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
 
       setPicture(response.data.picture);
-      //                          |
-      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
 
-      setIsUploading(false); // to stop the loading animation
+      setIsLoading(false);
     } catch (error) {
       navigate("/error");
     }
@@ -98,6 +90,22 @@ function EditRecipe() {
     navigate(`/recipes/${params.recipeId}`);
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <ProgressBar
+          height="80"
+          width="80"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass="progress-bar-wrapper"
+          borderColor="#51E5FF"
+          barColor="lightBlue"
+          className="loading-bar"
+        />
+      </div>
+    );
+  }
   return (
     <div className="form">
       <h2>Add your own recipe</h2>
@@ -153,12 +161,7 @@ function EditRecipe() {
         />
         <br />
         <label htmlFor="picture">Picture</label>
-        <input
-          type="file"
-          name="picture"
-          onChange={handleFileUpload}
-          disabled={isUploading}
-        />
+        <input type="file" name="picture" onChange={handleFileUpload} />
         <br />
         <button className="buttons" type="submit">
           Update your recipe

@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { AuthContext } from "../../context/auth.context.js";
 import CommentCard from "../../components/CommentCard";
+
 function CommentList() {
   const [comments, setComments] = useState([]);
   const params = useParams();

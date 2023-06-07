@@ -28,6 +28,7 @@ function Signup() {
       };
 
       await signupService(user);
+
       navigate("/auth/login"); //* El usuario se crea y nos redirige a Login (funciona)
     } catch (error) {
       // console.log(error.response.status)
@@ -42,9 +43,8 @@ function Signup() {
 
   return (
     <div className="auth">
-     
       <section className="auth-form">
-      <h2>Signup form</h2>
+        <h2>Signup form</h2>
         <form onSubmit={handleSignup}>
           <label>Username:</label>
           <input
@@ -53,17 +53,18 @@ function Signup() {
             value={username}
             onChange={handleUsernameChange}
           />
-
+          <br />
           <br />
 
           <label>Email:</label>
+          <br />
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleEmailChange}
           />
-
+          <br />
           <br />
 
           <label>Password:</label>
@@ -74,7 +75,8 @@ function Signup() {
             onChange={handlePasswordChange}
           />
 
-          <br /><br />
+          <br />
+          <br />
           {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
           <button type="submit">Create your account</button>
         </form>

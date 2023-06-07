@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 function Home() {
   const { isLoggedIn } = useContext(AuthContext);
- 
+
   return (
     <div className="home">
       <section className="logo">
@@ -16,11 +16,9 @@ function Home() {
           just want to learn and have a good time cooking. La Petite Pâtisserie
           is a place where you can find an amazing variety of recipes of all
           kind: cakes, pastries, biscuits, desserts, puddings...
-          
         </p>
       </section>
       <section>
-      
         {!isLoggedIn && (
           <Link to={"/auth/signup"}>
             <button className="buttons">Create an account</button>

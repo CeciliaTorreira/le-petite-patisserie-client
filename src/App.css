@@ -1,20 +1,23 @@
 .App {
   text-align: center;
+  font-family: "Playfair";
 }
 
 a {
   margin: 10px;
 }
+hr {
+  margin-top: 20px;
+  width: 100%;
+  box-shadow: 6px 5px 15px 2px lightblue;
+}
 .home {
-display: flex;
-flex-direction: column;
-margin: 50px 25px 60px 25px;
-
-
+  display: flex;
+  flex-direction: column;
+  margin: 50px 25px 60px 25px;
 }
 .logo {
- margin-top: 50px;
-
+  margin-top: 50px;
 }
 .navbar {
   position: fixed;
@@ -24,17 +27,46 @@ margin: 50px 25px 60px 25px;
   height: 60px;
   background-color: lightblue;
 }
-.navbar-links{
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;}
-.navbar img{
-margin-bottom: 10px;
-width: 50px;
-height: 47px;
-
-} 
-
+.navbar-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.navbar img {
+  margin-bottom: 10px;
+  width: 50px;
+  height: 47px;
+}
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.auth-form {
+  margin-top: 30%;
+  width: 50%;
+  padding: 20px 20px 20px 20px;
+  border: 2px outset lightskyblue;
+  border-radius: 15% 0 20% 0;
+  box-shadow: 6px 5px 15px 2px lightblue;
+  background-color: rgb(199, 229, 240);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 15px 20px 10px 20px;
+  border-radius: 15px 0 15px 0;
+  border: 2px outset lightskyblue;
+  box-shadow: 6px 5px 15px 2px lightblue;
+  background-color: rgb(199, 229, 240);
+}
 a {
   text-decoration: none;
 }
@@ -45,11 +77,12 @@ button {
   line-height: 14px;
   padding: 5px;
   border-radius: 7px;
-    font-weight: normal;
+  font-weight: normal;
   text-decoration: none;
   font-style: normal;
   font-variant: normal;
   text-transform: none;
+  margin: 5px;
   background-image: linear-gradient(
     to right,
     rgb(37, 145, 216) 0%,
@@ -66,6 +99,15 @@ button:hover {
 button:active {
   background: #57abe2;
 }
+.user-profile {
+  width: 90%;
+  margin: 15px 20px 10px 20px;
+  border: 2px outset lightskyblue;
+  box-shadow: 6px 5px 15px 2px lightblue;
+  border-radius: 15px 0 15px 0;
+  background-color: rgb(199, 229, 240);
+  padding-bottom: 10px;
+}
 .user-recipes {
   display: flex;
   justify-content: space-evenly;
@@ -80,6 +122,7 @@ button:active {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-bottom: 60px;
 }
 .ingredients-input {
   width: 80%;
@@ -97,7 +140,7 @@ button:active {
 .recipe-card {
   width: 170px;
   border: 2px outset lightskyblue;
-  border-radius: 15% 0 20% 0;
+  border-radius: 15% 0 13% 0;
   box-shadow: 6px 5px 15px 2px lightblue;
   background-color: rgb(199, 229, 240);
   /* display: flex;
@@ -108,6 +151,7 @@ button:active {
   border-radius: 20% 20% 20% 20%;
   width: 165px;
   margin-top: 5px;
+  border: 1px inset rgb(199, 229, 240);
 }
 
 .recipe-list {

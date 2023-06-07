@@ -8,7 +8,6 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ProgressBar } from "react-loader-spinner";
 import { AuthContext } from "../../context/auth.context.js";
-// import { loadProfileService } from "../../services/profile.services";
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -16,11 +15,11 @@ function RecipeDetails() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { isLoggedIn, activeUser, authenticateUser } = useContext(AuthContext);
+  const { isLoggedIn, activeUser } = useContext(AuthContext);
 
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isFavourite, setIsFavourite] = useState(); // Estados para mostrar un botón u otro dependiendo de si la receta está ya en favoritos o no
+  const [isFavourite, setIsFavourite] = useState();
 
   useEffect(() => {
     getData();
@@ -30,26 +29,22 @@ function RecipeDetails() {
   const getData = async () => {
     try {
       const oneRecipe = await getRecipeByIdService(params.recipeId);
-      // console.log(oneRecipe.data._id);
+      console.log(oneRecipe.data);
       setRecipe(oneRecipe.data);
-      console.log(activeUser);
-      authenticateUser();
+      setIsLoading(false);
       // Comprobamos si el usuario tiene ya la receta agregada a favoritos
-      if (
-        activeUser &&
-        activeUser.favouriteRecipes.includes(oneRecipe.data._id)
-      ) {
+      if (activeUser && activeUser.favouriteRecipes.includes(oneRecipe.data._id)) {
         setIsFavourite(true);
       } else {
         setIsFavourite(false);
       }
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
     }
   };
 
+  //BORRAR RECETA  (admin)
   const handleDelete = async () => {
     try {
       await deleteRecipeService(params.recipeId);
@@ -59,15 +54,14 @@ function RecipeDetails() {
     }
   };
 
-  // AÑADIR RECETAS A LA LISTA DE FAVOURITOS
+   //AÑADIR RECETA A FAVORITOS
   const handleAddFavourite = async () => {
     try {
       await addToFavoritesService(params.recipeId);
-      await getData()
+      await getData();
       setIsFavourite(true);
-      
-          } catch (error) {
-      if (error.response.status === 400) {
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
         navigate("/error");
@@ -75,17 +69,14 @@ function RecipeDetails() {
     }
   };
 
-  // BORRAR RECETAS DE LA LISTA DE FAVORITOS
+ // QUITAR RECETA DE FAVORITOS
   const handleRemoveFavourite = async () => {
     try {
       await removeFromFavouriteService(params.recipeId);
-      await getData()
+      await getData();
       setIsFavourite(false);
-      
-      
     } catch (error) {
       console.log(error);
-
       navigate("/error");
     }
   };
@@ -120,12 +111,12 @@ function RecipeDetails() {
       </section>
       <br />
       <section className="details-buttons">
-        {activeUser.id === recipe.creator.id && (
+        {activeUser && activeUser._id === recipe.creator._id && (
           <Link to={`/recipes/${recipe._id}/edit`}>
             <button>Edit recipe</button>
           </Link>
         )}
-        {activeUser.role === "admin" && (
+        {activeUser && activeUser.role === "admin" && (
           <button onClick={handleDelete}>Delete recipe</button>
         )}
       </section>
@@ -151,4 +142,4 @@ function RecipeDetails() {
     </div>
   );
 }
-export default RecipeDetails;
+export default RecipeDetails

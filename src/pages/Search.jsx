@@ -7,7 +7,7 @@ function Search() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [allRecipes, setAllRecipes] = useState([]);
-  const [foundRecipes, setFoundRecipes] =useState([]) // Estado para almacenar los resultados de búsqueda y poder renderizarlos después
+  const [foundRecipes, setFoundRecipes] = useState([]); // Estado para almacenar los resultados de búsqueda y poder renderizarlos después
   useEffect(() => {
     getRecipeData();
     // eslint-disable-next-line
@@ -28,7 +28,7 @@ function Search() {
       return eachRecipe.name.toLowerCase().includes(searchInput.toLowerCase());
     });
     console.log(foundRecipes);
-    setFoundRecipes(foundRecipes)
+    setFoundRecipes(foundRecipes);
   };
 
   const handleSearchChange = (e) => {
@@ -37,20 +37,23 @@ function Search() {
   };
 
   return (
-    <div>
-      <section className="search-bar"></section>
-      <h3>Find a recipe</h3>
+    <div >
+      <section className="search-bar">
+        <h3>Find a recipe</h3>
 
-      <input
-        type="text"
-        name="search"
-        value={searchInput}
-        onChange={handleSearchChange}
-      />
+        <input
+          type="text"
+          name="search"
+          value={searchInput}
+          onChange={handleSearchChange}
+        />
+        <br />
+      </section>
+
       <hr />
       {/* Tenemos en la consola los elementos que obtenemos tras realizar una búsqueda  */}
       <section className="search-results">
-        {foundRecipes.map((eachRecipe) => {  
+        {foundRecipes.map((eachRecipe) => {
           return (
             <div key={eachRecipe._id}>
               <Link to={`/recipes/${eachRecipe._id}`}>

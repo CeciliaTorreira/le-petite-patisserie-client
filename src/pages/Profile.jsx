@@ -60,17 +60,19 @@ function Profile() {
 
   return (
     <div>
+    <section className="user-profile">
       <h1>{activeUser.username}'s profile</h1>
-      {activeUser.role === "user" && (
+      {activeUser.role === "admin" && (
         <p>Testeando renderizaciones de admin/user</p>
       )}
 
-      <button className="buttons" onClick={userFavouriteRecipes}>
+      <button onClick={userFavouriteRecipes}>
         Favourite Recipes
       </button>
-      <button className="buttons" onClick={userCreatedRecipes}>
+      <button onClick={userCreatedRecipes}>
         Created Recipes
       </button>
+      </section>
       <hr />
       <div className="profile-recipes">
         {showFavouriteRecipes && (

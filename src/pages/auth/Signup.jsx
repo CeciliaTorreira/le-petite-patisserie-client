@@ -41,9 +41,10 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Signup form</h1>
+    <div className="auth">
+     
       <section className="auth-form">
+      <h2>Signup form</h2>
         <form onSubmit={handleSignup}>
           <label>Username:</label>
           <input
@@ -73,7 +74,7 @@ function Signup() {
             onChange={handlePasswordChange}
           />
 
-          <br />
+          <br /><br />
           {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
           <button type="submit">Create your account</button>
         </form>

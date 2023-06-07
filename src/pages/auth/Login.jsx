@@ -50,9 +50,10 @@ function Login() {
 
 
   return (
-    <div>
- <h1>Login Form</h1>
- <section className="authform">
+    <div className="auth">
+ 
+ <section className="auth-form">
+ <h2>Login form</h2>
  <form onSubmit={handleLogin}>
         <label>Email:</label>
         <input
@@ -71,9 +72,10 @@ function Login() {
           value={password}
           onChange={handlePasswordChange}
         />
-
+           
         <br />
         {errorMessage && <p style={{fontWeight: "bold"}}>{errorMessage}</p>}
+        <br />
         <button type="submit">Login</button>
       </form>
       </section>

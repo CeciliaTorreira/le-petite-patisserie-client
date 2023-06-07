@@ -24,10 +24,16 @@ margin: 50px 25px 60px 25px;
   height: 60px;
   background-color: lightblue;
 }
-/* .navbar a{
+.navbar-links{
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;}
+.navbar img{
+margin-bottom: 10px;
+width: 50px;
+height: 47px;
 
-
-} */
+} 
 
 a {
   text-decoration: none;

@@ -15,7 +15,8 @@ function Home() {
           It doesn't matter if you're a pastry connoisseur, an aficionado or
           just want to learn and have a good time cooking. La Petite Pâtisserie
           is a place where you can find an amazing variety of recipes of all
-          kind: cakes, pastries, biscuits, desserts, puddings...{" "}
+          kind: cakes, pastries, biscuits, desserts, puddings...
+          
         </p>
       </section>
       <section>

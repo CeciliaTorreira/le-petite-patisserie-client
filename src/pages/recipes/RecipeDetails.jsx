@@ -20,8 +20,8 @@ function RecipeDetails() {
 
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isFavourite, setIsFavourite] = useState(null);
-
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [isCreator, setIsCreator] = useState(false);
   useEffect(() => {
     getData();
     // eslint-disable-next-line
@@ -33,7 +33,8 @@ function RecipeDetails() {
       // console.log(oneRecipe.data);
       setRecipe(oneRecipe.data);
       const userData = await loadProfileService();
-
+      console.log(oneRecipe.data.creator);
+      console.log(params.recipeId);
       // Comprobamos si el usuario tiene ya la receta agregada a favoritos
       if (
         activeUser &&
@@ -43,7 +44,12 @@ function RecipeDetails() {
       } else {
         setIsFavourite(false);
       }
-
+      //Comprobamos si es el creador de la receta
+      if (activeUser._id === oneRecipe.data.creator) {
+        setIsCreator(true);
+      } else {
+        setIsCreator(false);
+      }
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -82,7 +88,6 @@ function RecipeDetails() {
       await getData();
       setIsFavourite(false);
     } catch (error) {
-      console.log(error);
       navigate("/error");
     }
   };
@@ -117,7 +122,7 @@ function RecipeDetails() {
       </section>
       <br />
       <section className="details-buttons">
-        {activeUser && activeUser._id === recipe.creator._id && (
+        {isCreator && (
           <Link to={`/recipes/${recipe._id}/edit`}>
             <button>Edit recipe</button>
           </Link>

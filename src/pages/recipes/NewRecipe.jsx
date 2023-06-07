@@ -2,10 +2,8 @@ import { useState } from "react";
 import { createRecipeService } from "../../services/recipe.services";
 import { useNavigate } from "react-router-dom";
 import { uploadImageService } from "../../services/upload.services.js";
-import { ProgressBar } from "react-loader-spinner";
 
 function NewRecipe(props) {
-  const [isLoading, setIsLoading] = useState(true);
   //ERROR
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -28,7 +26,6 @@ function NewRecipe(props) {
       // to prevent accidentally clicking the choose file button and not selecting a file
       return;
     }
-    setIsLoading(true);
 
     const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
     uploadData.append("picture", e.target.files[0]);
@@ -39,8 +36,6 @@ function NewRecipe(props) {
       const response = await uploadImageService(uploadData);
 
       setPicture(response.data.picture);
-
-      setIsLoading(false);
     } catch (error) {
       navigate("/error");
     }
@@ -67,7 +62,7 @@ function NewRecipe(props) {
       };
 
       await createRecipeService(newRecipe);
-      setIsLoading(false);
+
       navigate("/profile");
     } catch (error) {
       if (error.response.status === 400) {
@@ -77,27 +72,12 @@ function NewRecipe(props) {
       }
     }
   };
-  if (isLoading) {
-    return (
-      <div>
-        <ProgressBar
-          height="80"
-          width="80"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{}}
-          wrapperClass="progress-bar-wrapper"
-          borderColor="#51E5FF"
-          barColor="lightBlue"
-          className="loading-bar"
-        />
-      </div>
-    );
-  }
+
   return (
     <div className="form">
       <h2>Add your own recipe</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="name">Recipe title:</label>
+        <label htmlFor="name">Recipe title: </label>
         <input
           type="text"
           name="name"
@@ -115,7 +95,7 @@ function NewRecipe(props) {
           value={ingredients}
         />
         <br />
-
+<br />
         <label htmlFor="instructions">Instructions:</label>
         <br />
         <textarea
@@ -126,34 +106,30 @@ function NewRecipe(props) {
           value={instructions}
         />
         <br />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="category">Category: </label>
         <select
           name="category"
           onChange={handleCategoryChange}
           value={category}
-        >
+        > 
           <option value="general">Regular</option>
           <option value="vegan">Vegan</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="gluten free">Gluten free</option>
           <option value="dairy free">Dairy free</option>
         </select>
-        <br />
-        <label htmlFor="servings">Servings:</label>
+        <br /><br />
+        <label htmlFor="servings">Servings: </label>
         <input
           type="number"
           name="servings"
           onChange={handleServingsChange}
           value={servings}
         />
-        <br />
-        <label htmlFor="picture">Picture</label>
-        <input
-          type="file"
-          name="picture"
-          onChange={handleFileUpload}
-        />
-        <br />
+        <br /><br />
+        <label htmlFor="picture">Picture: </label>
+        <input type="file" name="picture" onChange={handleFileUpload} />
+        <br /><br />
         <button className="buttons" type="submit">
           Add your recipe
         </button>

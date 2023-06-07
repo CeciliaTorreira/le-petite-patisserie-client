@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createCommentService } from "../../services/recipe.services";
 import { useNavigate, useParams } from "react-router-dom";
-import { ProgressBar } from "react-loader-spinner";
+
 function NewComment() {
   const params = useParams();
   //ERROR
@@ -10,7 +10,7 @@ function NewComment() {
   //FORM
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const handleDescriptionChange = (e) => setDescription(e.target.value);
@@ -25,7 +25,7 @@ function NewComment() {
         rating,
       };
       await createCommentService(params.recipeId, newComment);
-      setIsLoading(false);
+
       navigate("/profile");
     } catch (error) {
       if (error.response.status === 400) {
@@ -35,22 +35,7 @@ function NewComment() {
       }
     }
   };
-  if (isLoading) {
-    return (
-      <div>
-        <ProgressBar
-          height="80"
-          width="80"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{}}
-          wrapperClass="progress-bar-wrapper"
-          borderColor="#51E5FF"
-          barColor="lightBlue"
-          className="loading-bar"
-        />
-      </div>
-    );
-  }
+
   return (
     <div>
       <h3>Share your opinion</h3>

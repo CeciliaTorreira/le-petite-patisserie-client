@@ -2,6 +2,21 @@
   text-align: center;
   font-family: "Playfair";
 }
+.center{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progress-bar-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
 
 a {
   margin: 10px;
@@ -19,7 +34,7 @@ hr {
 .logo {
   margin-top: 50px;
 }
-.intro  {
+.intro {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,7 +58,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  }
+}
 .navbar img {
   margin-bottom: 10px;
   width: 47px;
@@ -55,7 +70,6 @@ hr {
   align-items: center;
   justify-content: center;
 }
-
 
 .auth-form {
   margin-top: 30%;
@@ -175,7 +189,7 @@ button:active {
 .recipe-list {
   display: flex;
   flex-direction: column;
-  margin: 40px 25px 60px 25px;
+  margin: 20px 25px 60px 25px;
 }
 .recipe-details {
   margin-top: 20px;
@@ -188,22 +202,23 @@ button:active {
   width: 210px;
   height: 210px;
 }
-.details {display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-width: 90%;
-margin: 15px 20px 10px 15px;
-border-radius: 15px 0 15px 0;
-border: 2px outset lightskyblue;
-box-shadow: 6px 5px 15px 2px lightblue;
-background-color: rgb(199, 229, 240);
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 15px 20px 10px 15px;
+  border-radius: 15px 0 15px 0;
+  border: 2px outset lightskyblue;
+  box-shadow: 6px 5px 15px 2px lightblue;
+  background-color: rgb(199, 229, 240);
 }
 .details p {
-font-weight: bold;
+  font-weight: bold;
 }
 .details span {
-font-weight: lighter;
+  font-weight: lighter;
 }
 .logged-out-recipes {
   display: flex;
@@ -217,7 +232,7 @@ font-weight: lighter;
   box-shadow: 6px 5px 15px 2px lightblue;
   background-color: rgb(199, 229, 240);
 }
-.new-recipe{
+.new-recipe {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,7 +249,8 @@ font-weight: lighter;
   background-color: rgb(199, 229, 240);
   display: flex;
   flex-direction: column;
-  justify-content: center;}
+  justify-content: center;
+}
 
 .logged-out-recipes a {
   text-decoration: none;
@@ -296,14 +312,5 @@ font-weight: lighter;
   box-shadow: 6px 5px 15px 2px lightblue;
   background-color: rgb(199, 229, 240);
 }
-/* .comment-text {
-text-align: left;
-
-
-} */
-/* .recipe-details{
-} */
-/* .form {
-} */
 
 /* MEDIA QUERIES SI ES POSIBLE (RECOMENDADO) */

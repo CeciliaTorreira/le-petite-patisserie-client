@@ -86,8 +86,9 @@ function EditRecipe() {
   };
 
   return (
-    <div className="form">
-      <h2>Add your own recipe</h2>
+    <div className="new-recipe">
+    <section className="recipe-form">
+      <h3>Change your recipe</h3>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="name">Recipe title: </label>
         <input
@@ -97,7 +98,7 @@ function EditRecipe() {
           value={name}
         />
         <br />
-        <br />
+        
         <label htmlFor="ingredients">List your ingredients:</label>
         <br />
         <textarea
@@ -154,7 +155,9 @@ function EditRecipe() {
             {errorMessage}
           </p>
         )}
+        
       </form>
+      </section>
     </div>
   );
 }

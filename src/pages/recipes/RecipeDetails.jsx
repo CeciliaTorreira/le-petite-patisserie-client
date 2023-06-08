@@ -93,17 +93,22 @@ function RecipeDetails() {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="center">
+      <div className="progress-bar">
         <ProgressBar
-          height="80"
-          width="80"
-          ariaLabel="progress-bar-loading"
-          wrapperStyle={{}}
+          height="300"
+          width="600"
+              ariaLabel="progress-bar-loading"
+          wrapperStyle={{
+          width: '400px',
+          }}
           wrapperClass="progress-bar-wrapper"
           borderColor="#51E5FF"
           barColor="lightBlue"
-          className="loading-bar"
+          visible={true}
         />
+        
+      </div>
       </div>
     );
   }

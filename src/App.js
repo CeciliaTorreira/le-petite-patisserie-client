@@ -20,9 +20,11 @@ import Navbar from "./components/Navbar";
 import IsPrivate from "./components/auth/IsPrivate";
 import NewComment from "./pages/comments/NewComment";
 
+
 function App() {
   return (
     <div className="App">
+    
       <Navbar />
 
       <Routes>

@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
+import TopBar from "../components/TopBar";
 
 function Home() {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <div className="home">
+    <section className="top"><TopBar/></section>
       <section className="logo">
         <img src="/pictures/logo.png" alt="logo" />
       </section>

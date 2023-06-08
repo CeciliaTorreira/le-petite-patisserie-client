@@ -24,6 +24,7 @@ function RecipeDetails() {
   const [isCreator, setIsCreator] = useState(false);
   useEffect(() => {
     getData();
+    loadProfileService();
     // eslint-disable-next-line
   }, []);
 

@@ -19,7 +19,7 @@ function CommentList() {
   const getData = async () => {
     try {
       const allComments = await getRecipeCommentsService(params.recipeId);
-      console.log(allComments.data);
+      
       setComments(allComments.data);
       setIsLoading(false);
     } catch (error) {

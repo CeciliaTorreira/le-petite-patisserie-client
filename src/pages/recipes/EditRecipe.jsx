@@ -29,7 +29,7 @@ function EditRecipe() {
   const getData = async () => {
     try {
       const oneRecipe = await getRecipeByIdService(params.recipeId);
-      console.log(oneRecipe.data);
+      
       setName(oneRecipe.data.name);
       setIngredients(oneRecipe.data.ingredients);
       setCategory(oneRecipe.data.category);

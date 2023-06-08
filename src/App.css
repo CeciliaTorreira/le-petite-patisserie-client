@@ -31,7 +31,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-}
+  }
 .navbar img {
   margin-bottom: 10px;
   width: 47px;

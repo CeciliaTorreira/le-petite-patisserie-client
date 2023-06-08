@@ -34,8 +34,8 @@ hr {
 }
 .navbar img {
   margin-bottom: 10px;
-  width: 50px;
-  height: 47px;
+  width: 47px;
+  height: 45px;
 }
 .auth {
   display: flex;
@@ -76,7 +76,7 @@ a {
 }
 
 button {
-  color: rgb(80, 80, 105);
+  color: rgb(223, 236, 255);
   font-size: 14px;
   line-height: 14px;
   padding: 5px;

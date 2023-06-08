@@ -24,7 +24,7 @@ function RecipeDetails() {
   const [isCreator, setIsCreator] = useState(false);
   useEffect(() => {
     getData();
-       // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const getData = async () => {
@@ -113,13 +113,20 @@ function RecipeDetails() {
     <div className="recipe-details">
       <img width={190} height={190} src={recipe.picture} alt={recipe.name} />
       <br />
-      
+
       <h3>{recipe.name}</h3>
       <section className="details">
-        <p>Category: {recipe.category}</p>
-        <p>Servings: {recipe.servings}</p>
-        <p>Ingredients: {recipe.ingredients}</p>
-        <p>Instructions: {recipe.instructions}</p>
+        <p>Servings:<span> {recipe.servings}</span> <br /><br />
+
+        Dietary: <span>{recipe.category}</span> 
+
+        <br /><br />
+          Ingredients: <br />
+         <span>{recipe.ingredients} </span> <br />
+          <br />
+          Instructions: <br />
+          <span>{recipe.instructions}</span> 
+        </p>
       </section>
       <br />
       <section className="details-buttons">
@@ -144,7 +151,7 @@ function RecipeDetails() {
         )}
         {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
       </section>
-      <hr style={{ width: 250 }} />
+      <hr style={{ width: 400 }} />
 
       <Link to={`/recipes/${recipe._id}/comments`}>
         <button>

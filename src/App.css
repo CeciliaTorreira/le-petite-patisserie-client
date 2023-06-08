@@ -197,6 +197,12 @@ border: 2px outset lightskyblue;
 box-shadow: 6px 5px 15px 2px lightblue;
 background-color: rgb(199, 229, 240);
 }
+.details p {
+font-weight: bold;
+}
+.details span {
+font-weight: lighter;
+}
 .logged-out-recipes {
   display: flex;
   flex-direction: column;

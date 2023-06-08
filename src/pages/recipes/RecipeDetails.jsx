@@ -24,8 +24,7 @@ function RecipeDetails() {
   const [isCreator, setIsCreator] = useState(false);
   useEffect(() => {
     getData();
-    loadProfileService();
-    // eslint-disable-next-line
+       // eslint-disable-next-line
   }, []);
 
   const getData = async () => {
@@ -114,6 +113,7 @@ function RecipeDetails() {
     <div className="recipe-details">
       <img width={190} height={190} src={recipe.picture} alt={recipe.name} />
       <br />
+      
       <h3>{recipe.name}</h3>
       <section className="details">
         <p>Category: {recipe.category}</p>

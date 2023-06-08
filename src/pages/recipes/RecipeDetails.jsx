@@ -30,11 +30,10 @@ function RecipeDetails() {
   const getData = async () => {
     try {
       const oneRecipe = await getRecipeByIdService(params.recipeId);
-      // console.log(oneRecipe.data);
+
       setRecipe(oneRecipe.data);
       const userData = await loadProfileService();
-      console.log(oneRecipe.data.creator);
-      console.log(params.recipeId);
+
       // Comprobamos si el usuario tiene ya la receta agregada a favoritos
       if (
         activeUser &&
@@ -116,16 +115,17 @@ function RecipeDetails() {
 
       <h3>{recipe.name}</h3>
       <section className="details">
-        <p>Servings:<span> {recipe.servings}</span> <br /><br />
-
-        Dietary: <span>{recipe.category}</span> 
-
-        <br /><br />
+        <p>
+          Servings:<span> {recipe.servings}</span> <br />
+          <br />
+          Dietary: <span>{recipe.category}</span>
+          <br />
+          <br />
           Ingredients: <br />
-         <span>{recipe.ingredients} </span> <br />
+          <span>{recipe.ingredients} </span> <br />
           <br />
           Instructions: <br />
-          <span>{recipe.instructions}</span> 
+          <span>{recipe.instructions}</span>
         </p>
       </section>
       <br />

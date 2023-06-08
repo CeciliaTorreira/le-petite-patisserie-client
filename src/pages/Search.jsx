@@ -29,7 +29,7 @@ function Search() {
     const foundRecipes = allRecipes.filter((eachRecipe) => {
       return eachRecipe.name.toLowerCase().includes(searchInput.toLowerCase());
     });
-    console.log(foundRecipes);
+
     setFoundRecipes(foundRecipes);
   };
 
@@ -67,7 +67,7 @@ function Search() {
         <br />
       </section>
 
-      <hr className="search-hr"/>
+      <hr className="search-hr" />
       {/* Tenemos en la consola los elementos que obtenemos tras realizar una búsqueda  */}
       <section className="search-results">
         {foundRecipes.map((eachRecipe) => {

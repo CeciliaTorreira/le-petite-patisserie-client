@@ -9,14 +9,13 @@ import { Link, useNavigate } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 import { ProgressBar } from "react-loader-spinner";
 
-
 function Profile() {
   const { activeUser } = useContext(AuthContext);
 
   const [favouriteRecipes, setFavouriteRecipes] = useState([]);
   const [createdRecipes, setCreatedRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   //Mostrar una lista u otra
 
   const [showFavouriteRecipes, setShowFavouriteRecipes] = useState(false);
@@ -32,7 +31,7 @@ function Profile() {
       await loadProfileService();
       setIsLoading(false);
     } catch (error) {
-      navigate("/error")
+      navigate("/error");
     }
   };
   // MOSTRAR RECETAS FAVORITAS DEL USUARIO ACTIVO
@@ -40,7 +39,6 @@ function Profile() {
     try {
       const foundRecipes = await getFavouriteRecipesService();
       setFavouriteRecipes(foundRecipes.data);
-      // console.log(foundRecipes.data.name); // Muestra array vacío
       setShowFavouriteRecipes(true);
       setShowCreatedRecipes(false);
       setIsLoading(false);
@@ -54,7 +52,7 @@ function Profile() {
     try {
       const createdRecipes = await getCreatedRecipesService();
       setCreatedRecipes(createdRecipes.data);
-      // console.log(createdRecipes.data.name);
+
       setShowFavouriteRecipes(false);
       setShowCreatedRecipes(true);
       setIsLoading(false);
@@ -80,18 +78,14 @@ function Profile() {
   }
   return (
     <div className="home">
-    <section className="user-profile">
-      <h1>{activeUser.username}'s profile</h1>
-      {activeUser.role === "admin" && (
-        <p>Testeando renderizaciones de admin/user</p>
-      )}
+      <section className="user-profile">
+        <h1>{activeUser.username}'s profile</h1>
+        {activeUser.role === "admin" && (
+          <p>Testeando renderizaciones de admin/user</p>
+        )}
 
-      <button onClick={userFavouriteRecipes}>
-        Favourite Recipes
-      </button>
-      <button onClick={userCreatedRecipes}>
-        Created Recipes
-      </button>
+        <button onClick={userFavouriteRecipes}>Favourite Recipes</button>
+        <button onClick={userCreatedRecipes}>Created Recipes</button>
       </section>
       <hr />
       <div className="profile-recipes">

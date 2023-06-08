@@ -55,6 +55,8 @@ hr {
   align-items: center;
   justify-content: center;
 }
+
+
 .auth-form {
   margin-top: 30%;
   width: 50%;
@@ -215,6 +217,24 @@ font-weight: lighter;
   box-shadow: 6px 5px 15px 2px lightblue;
   background-color: rgb(199, 229, 240);
 }
+.new-recipe{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.recipe-form {
+  margin-top: 2%;
+  margin-bottom: 70px;
+  width: 80%;
+  padding: 5px 20px 20px 20px;
+  border: 2px outset lightskyblue;
+  border-radius: 6% 0 6% 0;
+  box-shadow: 6px 5px 15px 2px lightblue;
+  background-color: rgb(199, 229, 240);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;}
 
 .logged-out-recipes a {
   text-decoration: none;

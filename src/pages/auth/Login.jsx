@@ -1,3 +1,9 @@
+//ESTILOS
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services";
@@ -11,7 +17,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   // ERRORES
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,7 +38,6 @@ function Login() {
       //! Validamos el token para comprobar quién es el usuario y si está loggeado.
       await authenticateUser();
 
-      
       navigate("/profile");
     } catch (error) {
       if (error.response.status === 400) {
@@ -43,36 +48,34 @@ function Login() {
     }
   };
 
-  
   return (
     <div className="auth">
       <section className="auth-form">
         <h2>Login form</h2>
-        <form onSubmit={handleLogin}>
-          <label>Email:</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <br />
-          <br />
-
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-
-          <br />
+        <Box sx={{ "& > :not(style)": { m: 1 } }}>
+          <FormControl variant="standard">
+            <InputLabel htmlFor="email-input">Email:</InputLabel>
+            <Input
+              id="email-input"
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+          </FormControl>
+          <FormControl variant="standard">
+            <InputLabel htmlFor="password-input">Password:</InputLabel>
+            <Input
+              id="password-input"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </FormControl>
           {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
-          <br />
-          <button type="submit">Login</button>
-        </form>
+          <button type="submit" onClick={handleLogin}>
+            Login
+          </button>
+        </Box>
       </section>
     </div>
   );

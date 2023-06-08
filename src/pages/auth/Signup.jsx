@@ -1,3 +1,13 @@
+//ESTILOS
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+
+
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupService } from "../../services/auth.services";
@@ -45,12 +55,50 @@ function Signup() {
     <div className="auth">
       <section className="auth-form">
         <h2>Signup form</h2>
-        <form onSubmit={handleSignup}>
+        <Box sx={{ "& > :not(style)": { m: 1 } }}>
+      <FormControl variant="standard">
+        <InputLabel htmlFor="username-input">
+          Username:
+        </InputLabel>
+        <Input
+          id="username-input"
+          startAdornment={
+           <InputAdornment position="start"> 
+             <AccountCircle /> 
+            </InputAdornment>
+          }
+          value={username}
+          onChange={handleUsernameChange}
+        />
+      </FormControl>
+      <FormControl variant="standard">
+        <InputLabel htmlFor="email-input">Email:</InputLabel>
+        <Input
+          id="email-input"
+          value={email}
+          onChange={handleEmailChange}
+        />
+      </FormControl>
+      <FormControl variant="standard">
+        <InputLabel htmlFor="password-input">Password:</InputLabel>
+        <Input
+          id="password-input"
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+      </FormControl>
+      {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
+      <button type="submit" onClick={handleSignup}>
+        Create your account
+      </button>
+    </Box>
+        {/* <form onSubmit={handleSignup}>
           <label>Username:</label>
-          <input
             type="text"
             name="username"
             value={username}
+          <input
             onChange={handleUsernameChange}
           />
           <br />
@@ -79,7 +127,7 @@ function Signup() {
           <br />
           {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
           <button type="submit">Create your account</button>
-        </form>
+        </form> */}
       </section>
     </div>
   );

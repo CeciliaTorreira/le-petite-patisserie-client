@@ -23,8 +23,10 @@ function CommentCard({ eachComment, recipeId }) {
           {eachComment.creator.username}{" "}
         </span>
         || Rating: {eachComment.rating}
-        <br /><br />
-      <span className="comment-text">{eachComment.description}</span></p>
+        <br />
+        <br />
+        <span className="comment-text">{eachComment.description}</span>
+      </p>
       {activeUser && activeUser.role === "admin" && (
         <button onClick={handleDelete}>Delete comment</button>
       )}

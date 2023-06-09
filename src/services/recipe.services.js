@@ -39,9 +39,9 @@ const createCommentService = (recipeId, newComment) => {
   return service.post(`/recipes/${recipeId}/comments`, newComment);
 };
 
-const getCommentByIdService = (recipeId, commentId) =>{
-return service.get(`/recipes/${recipeId}/comments/${commentId}`)
-}
+const getCommentByIdService = (recipeId, commentId) => {
+  return service.get(`/recipes/${recipeId}/comments/${commentId}`);
+};
 
 const deleteCommentService = (recipeId, commentId) => {
   return service.delete(`/recipes/${recipeId}/comments/${commentId}`);

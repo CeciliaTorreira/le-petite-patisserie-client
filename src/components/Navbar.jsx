@@ -51,5 +51,5 @@ function Navbar() {
     </nav>
   );
 }
-//! Actualizar botones
+
 export default Navbar;

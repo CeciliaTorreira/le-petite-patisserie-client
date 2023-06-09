@@ -37,7 +37,7 @@ function Signup() {
 
       await signupService(user);
 
-      navigate("/auth/login"); //* El usuario se crea y nos redirige a Login (funciona)
+      navigate("/auth/login");
     } catch (error) {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
@@ -87,41 +87,6 @@ function Signup() {
             Create your account
           </button>
         </Box>
-        {/* <form onSubmit={handleSignup}>
-          <label>Username:</label>
-            type="text"
-            name="username"
-            value={username}
-          <input
-            onChange={handleUsernameChange}
-          />
-          <br />
-          <br />
-
-          <label>Email:</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <br />
-          <br />
-
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-
-          <br />
-          <br />
-          {errorMessage && <p style={{ fontWeight: "bold" }}>{errorMessage}</p>}
-          <button type="submit">Create your account</button>
-        </form> */}
       </section>
     </div>
   );

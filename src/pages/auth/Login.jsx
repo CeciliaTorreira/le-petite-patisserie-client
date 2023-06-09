@@ -41,7 +41,7 @@ function Login() {
       navigate("/profile");
     } catch (error) {
       if (error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage); // Mensajes de error funcionando según qué validación no se está cumpliendo.
+        setErrorMessage(error.response.data.errorMessage);
       } else {
         navigate("/error");
       }

@@ -8,7 +8,7 @@ function Search() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [allRecipes, setAllRecipes] = useState([]);
-  const [foundRecipes, setFoundRecipes] = useState([]); // Estado para almacenar los resultados de búsqueda y poder renderizarlos después
+  const [foundRecipes, setFoundRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getRecipeData();
@@ -17,7 +17,7 @@ function Search() {
 
   const getRecipeData = async () => {
     try {
-      const recipes = await getAllRecipesService(); // Quiero hacer búsqueda sobre todas las recetas que se encuentren en la DB
+      const recipes = await getAllRecipesService();
       setAllRecipes(recipes.data);
       setIsLoading(false);
     } catch (error) {
@@ -68,7 +68,7 @@ function Search() {
       </section>
 
       <hr className="search-hr" />
-      {/* Tenemos en la consola los elementos que obtenemos tras realizar una búsqueda  */}
+
       <section className="search-results">
         {foundRecipes.map((eachRecipe) => {
           return (

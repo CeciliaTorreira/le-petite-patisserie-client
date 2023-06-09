@@ -96,11 +96,11 @@ function RecipeDetails() {
       <div className="center">
       <div className="progress-bar">
         <ProgressBar
-          height="300"
-          width="600"
+          height="80"
+          width="80"
               ariaLabel="progress-bar-loading"
           wrapperStyle={{
-          width: '400px',
+          
           }}
           wrapperClass="progress-bar-wrapper"
           borderColor="#51E5FF"

@@ -88,7 +88,7 @@ function Profile() {
         <button onClick={userCreatedRecipes}>Created Recipes</button>
       </section>
       <hr />
-      <div className="profile-recipes">
+      <div>
         {showFavouriteRecipes && (
           <section className="user-recipes">
             {favouriteRecipes.map((eachRecipe) => {

@@ -136,9 +136,11 @@ function RecipeDetails() {
       <br />
       <section className="details-buttons">
         {isCreator && (
+        <div>
           <Link to={`/recipes/${recipe._id}/edit`}>
             <button>Edit recipe</button>
           </Link>
+          <button onClick={handleDelete}>Delete recipe</button></div>
         )}
         {activeUser && activeUser.role === "admin" && (
           <button onClick={handleDelete}>Delete recipe</button>

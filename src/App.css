@@ -169,12 +169,10 @@ button:active {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-bottom: 60px;
+
 }
-.profile-recipes {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
+
 .search-results {
   display: flex;
   justify-content: space-evenly;
